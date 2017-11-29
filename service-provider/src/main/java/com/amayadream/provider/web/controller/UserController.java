@@ -2,6 +2,7 @@ package com.amayadream.provider.web.controller;
 
 import com.amayadream.provider.core.model.User;
 import com.amayadream.provider.core.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
  * @author : xjding
  * @date :   2017-11-29 19:54
  */
+@Slf4j
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
