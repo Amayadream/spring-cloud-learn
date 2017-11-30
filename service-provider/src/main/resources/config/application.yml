@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: service-provider
   jpa:
     show-sql: true
     hibernate:
@@ -16,14 +14,6 @@ spring:
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
-
-
-
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:8600/eureka/
 
 server:
   port: 8500

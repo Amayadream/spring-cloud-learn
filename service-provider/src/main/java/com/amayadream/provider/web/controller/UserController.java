@@ -3,8 +3,6 @@ package com.amayadream.provider.web.controller;
 import com.amayadream.provider.core.model.User;
 import com.amayadream.provider.core.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +20,6 @@ public class UserController {
 
     @Resource
     private UserRepository userRepository;
-    @Resource
-    private EurekaDiscoveryClient discoveryClient;
-
 
     @RequestMapping(value = "/{id}")
     public User findById(@PathVariable Long id) {
@@ -32,9 +27,5 @@ public class UserController {
         return user;
     }
 
-    @RequestMapping(value = "/instance-info")
-    public ServiceInstance showInfo() {
-        return this.discoveryClient.getLocalServiceInstance();
-    }
 
 }

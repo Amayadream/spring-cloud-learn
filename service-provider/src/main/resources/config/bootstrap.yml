@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: application1          # 对应config-server所获取的配置文件的{application}
+  cloud:
+    config:
+#      uri: http://127.0.0.1:8700/
+      profile: dev              # 指定profile，对应config-server所获取的配置文件中的{profile}
+      label: master             # 指定git仓库的分支，对应config-server所获取的配置文件的{label}
+      discovery:
+        enabled: true
+        service-id: config-server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8600/eureka/
