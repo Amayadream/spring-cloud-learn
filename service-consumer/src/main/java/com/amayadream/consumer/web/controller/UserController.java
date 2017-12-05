@@ -1,6 +1,7 @@
 package com.amayadream.consumer.web.controller;
 
 import com.amayadream.consumer.core.model.User;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,19 @@ public class UserController {
     private RestTemplate restTemplate;
 
     @RequestMapping(value = "/{id}")
+    @HystrixCommand(fallbackMethod = "fallback")
     public User findById(@PathVariable Long id) {
         return this.restTemplate.getForObject("http://application1/user/" + id, User.class);
+    }
+
+    public User fallback(Long id) {
+        log.info("异常发生, 进入fallback方法, id: {}", id);
+        User user = User.builder()
+                .id(-1L)
+                .userName("default user")
+                .age(0)
+                .build();
+        return user;
     }
 
 }
