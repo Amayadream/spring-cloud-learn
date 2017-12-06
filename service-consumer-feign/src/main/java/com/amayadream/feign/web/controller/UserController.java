@@ -1,7 +1,6 @@
-package com.amayadream.consumer.web.controller;
+package com.amayadream.feign.web.controller;
 
-import com.amayadream.consumer.core.client.UserServiceClient;
-import com.amayadream.consumer.core.model.User;
+import com.amayadream.feign.core.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +19,11 @@ import javax.annotation.Resource;
 public class UserController {
 
     @Resource
-    private UserServiceClient userServiceClient;
+    private RestTemplate restTemplate;
 
     @RequestMapping(value = "/{id}")
     public User findById(@PathVariable Long id) {
-        return this.userServiceClient.findById(id);
+        return this.restTemplate.getForObject("http://application1/user/" + id, User.class);
     }
 
 }
