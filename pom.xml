@@ -14,7 +14,6 @@
         <module>spring-cloud-zuul</module>
         <module>service-provider</module>
         <module>service-consumer</module>
-        <module>service-consumer-feign</module>
     </modules>
 
     <properties>
